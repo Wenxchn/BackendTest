@@ -6,6 +6,15 @@ const ApiRouter = require('./routes/api')
 const AccountRouter = require('./routes/account')
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test'
 
+// const errorHandler = (err, req, res, next) => {
+//   if (res.headersSent) {
+//     return next(err)
+//   }
+//   res.status(500)
+//   res.render('error', { error : err })
+// }
+// errorHandler()
+
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
