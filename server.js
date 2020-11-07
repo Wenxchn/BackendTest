@@ -6,14 +6,10 @@ const ApiRouter = require('./routes/api')
 const AccountRouter = require('./routes/account')
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test'
 
-// const errorHandler = (err, req, res, next) => {
-//   if (res.headersSent) {
-//     return next(err)
-//   }
-//   res.status(500)
-//   res.render('error', { error : err })
-// }
-// errorHandler()
+const errorHandler = (err, req, res, next) => {
+  res.status(500)
+  res.send('Bad Things Happened')
+}
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
@@ -32,6 +28,7 @@ app.use(
 
 app.use('/api', ApiRouter)
 app.use('/account', AccountRouter)
+app.use(errorHandler)
 
 app.listen(3000, () => {
     console.log('Listening to 3000')
