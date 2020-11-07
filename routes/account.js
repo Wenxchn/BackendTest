@@ -30,6 +30,7 @@ router.post('/logout', isAuthenticated, (req, res) => {
     req.session.username = ''
     req.session.password = ''
     res.send('User logged out')
+    res.json({ status: 'OK' })
 })
 
 module.exports = router 

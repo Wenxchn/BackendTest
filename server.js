@@ -7,8 +7,11 @@ const AccountRouter = require('./routes/account')
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test'
 
 const errorHandler = (err, req, res, next) => {
-  res.status(500)
-  res.send('Bad Things Happened')
+  if (err) {
+    res.status(500)
+    res.send('Bad Things Happened')
+  }
+    next()
 }
 
 mongoose.connect(MONGO_URI, {
